@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="174px" height="223px" viewBox="0 0 174 223" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="175" height="223"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD-Copy-5" transform="translate(0.000000, -577.000000)">
+            <g id="Group" transform="translate(0.000000, 577.000000)">
+                <g id="Group-2">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Rectangle-8"></g>
+                    <path d="M98.3213679,139.697282 C110.423586,118.258567 108.945657,90.7133354 92.4761424,70.4562638 C81.0878094,56.4526852 64.8259278,48.7457594 48.1207842,47.7939127 C51.2994391,36.4265763 49.1064589,23.7457848 41.0939157,13.890205 C27.9826934,-2.23286564 4.28217618,-4.67663883 -11.8420609,8.43458342 C-22.538672,17.1318497 -27.2057538,30.489199 -25.3137251,43.2038184 C-51.4720133,28.450194 -85.07127,30.2582362 -109.781958,50.3520008 C-131.869235,68.3111092 -141.11358,96.307768 -136.326351,122.463723 C-214.44194,145.224058 -241.387601,243.85801 -188.777072,283.518291 L161.083762,283.518291 C170.302445,270.687024 175.030183,253.647101 174.999855,237.331561 C174.915869,192.51661 139.948332,153.545719 98.3213679,139.697282 Z" id="Fill-1" fill-opacity="0.0416100543" fill="#000000" mask="url(#mask-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

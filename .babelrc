@@ -1,6 +1,5 @@
-// NOTE: These options are overriden by the babel-loader configuration
-// for webpack
 {
-  "presets": ["es2015", "stage-0"],
-  "plugins": ["add-module-exports"]
+  "presets": ["es2015", "stage-2"],
+  "plugins": ["transform-runtime"],
+  "comments": false
 }
