@@ -1,8 +1,8 @@
 <template>
-  <div class="container" >
+  <div class="container" :class="{'other-back': useSecondBack() }">
     <div class="abs-full background-home" :class="{cache: !isLastOrFirstPage()}"></div>
     <div class="abs-full logo" :class="{cache: !isLastOrFirstPage(), 'on-top': page == nbrOfPages - 1}"></div>
-    <div class="abs-full illu-1" :class="{cache: !isLastOrFirstPage()}"></div>
+    <div class="abs-full illu-1" :class="{cache: isLastOrFirstPage()}"></div>
     <controls :page="page" :nbr-of-pages="nbrOfPages"></controls>
     <div class="abs-full page" :class="getClassesForPage(1)">
       <h1>Page 1</h1>
@@ -18,7 +18,7 @@
     </div>
     <progression :page="page" :nbr-of-pages="nbrOfPages" :from-page="6" :to-page="11"></progression>
     <div class="abs-full page page-merci" :class="getClassesForPage(12)">
-      <h1>Merci</h1>
+      <h1>Merci !</h1>
     </div>
   </div>
 </template>
@@ -40,6 +40,13 @@ export default {
   methods: {
     isLastOrFirstPage() {
       return this.page == 0 || this.page == this.nbrOfPages - 1
+    },
+    useSecondBack() {
+      if (this.isLastOrFirstPage()) {
+        return false
+      }
+      return this.page % 2 == 1
+      // return [1, 3, 5, 7, 9, 11].indexOf(this.page) == -1
     },
     getClassesForPage(forPage, toPage) {
       if (is.existy(toPage)) {
@@ -76,6 +83,13 @@ export default {
     width: 100%;
     margin: 0;
     padding: 0;
+    background: #C2DBF7;
+
+    transition-duration: .3s;
+
+    &.other-back {
+      background: #FFE0D1;
+    }
   }
 
   .background-home {

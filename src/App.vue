@@ -6,7 +6,7 @@
     <div v-else class="login-container"  transition="scale-out">
       <div class="login">
         <p v-if="secretIsCorrect == false">Nope !</p>
-        <input type="password" name="secret" v-model="secret" placeholder="secret" @keyup.enter="trySecretKey"><br />
+        <input type="password" name="secret" v-model="secret" placeholder="secret" @keyup.enter="trySecretKey" autofocus><br />
         <button type="button" @click="trySecretKey">Go !</button>
       </div>
     </div>
@@ -102,7 +102,7 @@ export default {
 html, body {
   height: 100%;
   width: 100%;
-  background: #A8CDF7;
+  background: #C2DBF7;
   overflow: hidden;
   font-family: 'Campton', Tahoma, sans-serif;
 }
