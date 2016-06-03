@@ -11,6 +11,8 @@ export default [
     steps: 4500
   }, {
     steps: 10089,
-    geoloc: { lat: 48.99887, lng: 2.00988 }
+    geoloc: { lat: 48.88303589, lng: 2.38535255 }
+  }, {
+    steps: 12098
   }
 ]

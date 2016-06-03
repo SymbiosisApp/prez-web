@@ -1,6 +1,9 @@
 <template>
   <div class="abs-full page" :class="getClassesForPage(0, 5)">
-    <div class="counter" v-if="state"><counter-incrementer :val="state.steps"></counter-incrementer> </div>
+    <div class="counter" v-if="state"><counter-incrementer :val="state.steps" :round="0"></counter-incrementer></div>
+    <div class="geoloc-map">
+      <geoloc :state="state"></geoloc>
+    </div>
   </div>
   <div class="abs-full page" :class="getClassesForPage(0)">
     <h1>Prensent 1</h1>
@@ -26,11 +29,13 @@
 import is from 'is_js'
 import appData from '../services/appData';
 import CounterIncrementer from './CounterIncrementer';
+import Geoloc from './Geoloc';
 import * as socket from '../services/sockets';
 
 export default {
   components: {
-    CounterIncrementer
+    CounterIncrementer,
+    Geoloc
   },
   props: {
     page: Number,
@@ -40,7 +45,9 @@ export default {
   },
   data() {
     return {
-      state: null
+      state: {
+        geoloc: { lat: 48.8746253, lng: 2.38835662 }
+      },
     }
   },
   computed: {
@@ -137,6 +144,16 @@ export default {
   margin: 0;
   top: 20%;
   right: 10%;
+}
+
+.geoloc-map {
+  position: absolute;
+  width: 15rem;
+  height: 15rem;
+  z-index: 1200;
+  overflow: hidden;
+  border-radius: 100%;
+  border: 5px solid white;
 }
 
 </style>

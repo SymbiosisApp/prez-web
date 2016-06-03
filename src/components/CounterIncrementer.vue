@@ -1,6 +1,6 @@
 <template>
   <span>
-    {{ Math.round(nbrOfStepsDisplay) }}
+    {{ formatNum(valueDisplay) }}
   </span>
 </template>
 
@@ -8,16 +8,16 @@
 
 export default {
   components: {},
-  props: ['val'],
+  props: ['val', 'round'],
   data() {
     return {
+      valueDisplay: 0,
       counterIncrementTimeout: -1,
-      nbrOfStepsDisplay: 0,
-      counterIncrementAmount: 10
+      counterIncrementAmount: 1000/30
     }
   },
   watch: {
-    'val': function (val, oldVal) {
+    val(val, oldVal) {
       this.animateNbrOfSteps()
     }
   },
@@ -27,17 +27,22 @@ export default {
       let duration = 500;
       let interval = 10;
       let iterate = duration / interval
-      let diff = this.val - this.nbrOfStepsDisplay
+      let diff = this.val - this.valueDisplay
       this.counterIncrementAmount = diff / iterate;
       this.counterIncrementTimeout = setInterval(this.incrementCounter, interval)
     },
     incrementCounter() {
-      if (Math.abs(this.val - this.nbrOfStepsDisplay) <= Math.abs(this.counterIncrementAmount)) {
-        this.nbrOfStepsDisplay = this.val
+      if (Math.abs(this.val - this.valueDisplay) <= Math.abs(this.counterIncrementAmount)) {
+        this.valueDisplay = this.val
         clearInterval(this.counterIncrementTimeout)
       } else {
-        this.nbrOfStepsDisplay += this.counterIncrementAmount
+        this.valueDisplay += this.counterIncrementAmount
       }
+    },
+    formatNum(num) {
+      let multiplier = Math.pow(10, this.round)
+      let result = Math.floor(num * multiplier) / multiplier
+      return result
     }
   }
 }

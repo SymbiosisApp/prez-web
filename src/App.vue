@@ -18,6 +18,9 @@ import 'normalize.css/normalize.css';
 import './assets/fonts/fonts.css';
 import * as socket from './services/sockets';
 import Presentation from './components/Presentation';
+import {load} from 'vue-google-maps'
+
+load('AIzaSyB8Ij61PnZs_ZrTeI6mx8vFRFCccxGYa00')
 
 export default {
   components: {
