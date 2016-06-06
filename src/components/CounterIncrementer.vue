@@ -13,7 +13,7 @@ export default {
     return {
       valueDisplay: 0,
       counterIncrementTimeout: -1,
-      counterIncrementAmount: 1000/30
+      counterIncrementAmount: 10
     }
   },
   watch: {
@@ -25,7 +25,7 @@ export default {
     animateNbrOfSteps() {
       clearInterval(this.counterIncrementTimeout)
       let duration = 500;
-      let interval = 10;
+      let interval = 1000/30;
       let iterate = duration / interval
       let diff = this.val - this.valueDisplay
       this.counterIncrementAmount = diff / iterate;
@@ -40,7 +40,7 @@ export default {
       }
     },
     formatNum(num) {
-      let multiplier = Math.pow(10, this.round)
+      let multiplier = Math.pow(10, this.round - 1)
       let result = Math.floor(num * multiplier) / multiplier
       return result
     }

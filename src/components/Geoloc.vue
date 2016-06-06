@@ -38,7 +38,7 @@ export default {
       },
       valueDisplay: { lat: 48.8746253, lng: 2.38835662 },
       counterIncrementTimeout: -1,
-      counterIncrementAmount: 1000/30
+      counterIncrementAmount: { lat: 1, lng: 1}
     }
   },
   computed: {
@@ -48,7 +48,6 @@ export default {
   },
   watch: {
     geoloc(val, oldVal) {
-      console.log(val.lat, val.lng)
       this.animateGeoloc()
     }
   },
@@ -56,7 +55,7 @@ export default {
     animateGeoloc() {
       clearInterval(this.counterIncrementTimeout)
       let duration = 500;
-      let interval = 10;
+      let interval = 1000/30;
       let iterate = duration / interval
       this.counterIncrementAmount = {
         lat: (this.geoloc.lat - this.valueDisplay.lat) / iterate,

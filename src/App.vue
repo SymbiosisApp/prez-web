@@ -1,7 +1,7 @@
 <template>
-  <div id="app" @click="nextPage">
+  <div id="app">
     <div v-if="secretIsCorrect == true" class="abs-container" transition="scale">
-      <presentation :page="page" :nbr-of-pages="nbrOfPages"></presentation>
+      <presentation :page="page" :nbr-of-pages="nbrOfPages" :help="help"></presentation>
     </div>
     <div v-else class="login-container"  transition="scale-out">
       <div class="login">
@@ -33,7 +33,8 @@ export default {
       nbrOfPages: 0,
       step: null,
       secretIsCorrect: null,
-      secret: ''
+      secret: '',
+      help: false
     }
   },
   watch: {
@@ -62,13 +63,18 @@ export default {
   },
   methods: {
     onKeyPressed(e) {
-      // console.log(e.keyCode)
+      console.log(e.keyCode)
       switch (e.keyCode) {
         case 39: // Right
+        case 34: // Presenter next
           this.nextPage()
           break;
         case 37: // Left
+        case 33: // Presenter prev
           this.prevPage()
+          break;
+        case 72: // H
+          this.help = !this.help
           break;
         default:
 
@@ -105,7 +111,7 @@ export default {
 html, body {
   height: 100%;
   width: 100%;
-  background: #C2DBF7;
+  background: #A8CDF7;
   overflow: hidden;
   font-family: 'Campton', Tahoma, sans-serif;
 }

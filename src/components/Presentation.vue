@@ -1,23 +1,57 @@
 <template>
-  <div class="container" :class="{'other-back': useSecondBack() }">
-    <div class="abs-full background-home" :class="{cache: !isLastOrFirstPage()}"></div>
-    <div class="abs-full logo" :class="{cache: !isLastOrFirstPage(), 'on-top': page == nbrOfPages - 1}"></div>
-    <div class="abs-full illu-1" :class="{cache: isLastOrFirstPage()}"></div>
-    <controls :page="page" :nbr-of-pages="nbrOfPages"></controls>
+  <div class="container" :style="{backgroundColor: getBackground() }">
+    <!-- <progression :page="page" :nbr-of-pages="nbrOfPages" :from-page="6" :to-page="11"></progression> -->
+    <div class="controls" :class="{cache: hideControl() }">
+      <controls :page="page" :nbr-of-pages="nbrOfPages"></controls>
+    </div>
+    <div class="abs-full background-home" :class="{cache: page != 0 }"></div>
+    <div class="abs-full logo" :class="{cache: page != 0 }"></div>
+    <div class="abs-full logo-white" :class="{cache: showLogoWhite() }"></div>
+    <div class="abs-full page" :class="getClassesForPage(1, 3)">
+      <div class="content">
+        <h2>thème</h2>
+        <div class="line"></div>
+      </div>
+    </div>
     <div class="abs-full page" :class="getClassesForPage(1)">
-      <h1>Page 1</h1>
+      <div class="main-illu phone-1"></div>
+      <div class="content">
+        <h1>Le numérique<br/>au service<br />de la nature</h1>
+      </div>
     </div>
     <div class="abs-full page" :class="getClassesForPage(2)">
-      <h1>Page 2</h1>
+      <div class="content">
+        <h1>Désintérêt<br>pour la<br>nature</h1>
+      </div>
     </div>
-    <div class="abs-full page" :class="getClassesForPage(3, 5)">
-      <h1>Page 3</h1>
-      <p class="abs-full page" :class="getClassesForPage(4)">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit
-      </p>
+    <div class="abs-full page" :class="getClassesForPage(2, 3)">
+      <div class="main-illu perso-1" :style="{ opacity: 1  }"></div>
+      <div class="main-illu perso-2" :style="{ opacity: page >= 3 ? 1 : 0  }"></div>
     </div>
-    <progression :page="page" :nbr-of-pages="nbrOfPages" :from-page="6" :to-page="11"></progression>
+    <div class="abs-full page" :class="getClassesForPage(3)">
+      <div class="content">
+        <h1>Valoriser <br>les espaces <br> naturels</h1>
+      </div>
+    </div>
+
+    </div>
+    <div class="abs-full page" :class="getClassesForPage(4, 5)">
+      <div class="play-button" :style="{opacity: page == 4 ? 1 : 0}"></div>
+      <video buffered :controls="help" v-el:concept-video class="concept-video" src="static/concept.mov" :style="{opacity: page <= 4 ? 0 : 1 }"></video>
+    </div>
+    <div class="abs-full page" :class="getClassesForPage(6)">
+      <div class="main-illu perso-3"></div>
+      <div class="content">
+        <h2>utilisatrice</h2>
+        <div class="line"></div>
+        <h1>Chloé Bouquet<br>25 ans<br>Paris</h1>
+      </div>
+    </div>
+
+    <div class="abs-full merci-phone" :class="{cache: page != nbrOfPages - 1 }"></div>
+    <div class="abs-full illu-merci" :class="{cache: page != nbrOfPages - 1 }"></div>
     <div class="abs-full page page-merci" :class="getClassesForPage(12)">
+      <div class="logos"></div>
       <h1>Merci !</h1>
     </div>
   </div>
@@ -33,13 +67,41 @@ export default {
     Controls,
     Progression
   },
-  props: ['page', 'nbr-of-pages'],
+  props: ['page', 'nbr-of-pages', 'help'],
   data() {
     return {}
+  },
+  watch: {
+    page(val, oldVal) {
+      if (val == 5) {
+        console.dir(this.$els.conceptVideo)
+        this.$els.conceptVideo.play()
+        console.log('play')
+      }
+      if (val == 4 || val == 6) {
+        this.$els.conceptVideo.pause()
+        console.log('stop')
+      }
+    }
   },
   methods: {
     isLastOrFirstPage() {
       return this.page == 0 || this.page == this.nbrOfPages - 1
+    },
+    showLogoWhite() {
+      if ([0, 5].indexOf(this.page) > -1) {
+        return true
+      }
+      return false
+    },
+    hideControl() {
+      if (this.help) {
+        return false
+      }
+      if ([0, 5, this.nbrOfPages-1].indexOf(this.page) > -1) {
+        return true
+      }
+      return false
     },
     useSecondBack() {
       if (this.isLastOrFirstPage()) {
@@ -47,6 +109,14 @@ export default {
       }
       return this.page % 2 == 1
       // return [1, 3, 5, 7, 9, 11].indexOf(this.page) == -1
+    },
+    getBackground() {
+      if (this.page == this.nbrOfPages - 1) {
+        return '#A8CDF7';
+      }
+
+      var colors = ['#A8CDF7', '#FF9C8D', '#A8CDF7', '#A8CDF7', '#FFE0D1', '#000000', '#A8CDF7']
+      return colors[this.page]
     },
     getClassesForPage(forPage, toPage) {
       if (is.existy(toPage)) {
@@ -103,23 +173,130 @@ export default {
   }
 
   .logo {
-    background: url(../assets/logo.svg) no-repeat center 40%;
+    background: url(../assets/logo.svg) no-repeat center 35%;
     transition-duration: .3s;
-    &.on-top {
-      background-position: center 20%;
-    }
     &.cache {
       transform: translateY(-50%);
       opacity: 0;
     }
   }
 
-  .illu-1 {
-    background: url(../assets/illu-1.svg) no-repeat bottom right;
+  .logo-white {
+    background: url(../assets/logo-white.svg) no-repeat 5% 5%;
+    transition-duration: .3s;
+    &.cache {
+      transform: translateY(-50%);
+      opacity: 0;
+    }
+  }
+
+  .phone-1 {
+    background: url(../assets/phone-1.png) no-repeat right;
+    background-size: contain;
+  }
+
+  .perso-1, .perso-2 {
+    transition-duration: .3s;
+    z-index: 1000;
+  }
+  .perso-1 {
+    background: url(../assets/perso-1.svg) no-repeat right;
+    background-size: contain;
+  }
+  .perso-2 {
+    background: url(../assets/perso-2.svg) no-repeat right;
+    background-size: contain;
+  }
+
+
+  .perso-3 {
+    background: url(../assets/perso-3.svg) no-repeat right;
+    background-size: contain;
+  }
+
+  .play-button {
+    background: url(../assets/play-button.svg) no-repeat center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    transition-duration: .3s;
+  }
+
+  .concept-video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition-duration: .3s;
+    z-index: 3001;
+  }
+
+  .controls {
+    position: absolute;
+    z-index: 4000;
+    background: url(../assets/controls.svg) no-repeat center;
+    background-size: contain;
+    background-position: bottom right;
+    width: 20vw;
+    height: 20vw;
+    bottom: 0;
+    right: 0;
     transition-duration: .3s;
     &.cache {
       transform: translateY(50%);
       opacity: 0;
+    }
+  }
+
+  .merci-phone {
+    background: url(../assets/merci-phone.png) no-repeat;
+    background-size: cover;
+    background-position: top center;
+    transition-duration: .3s;
+    &.cache {
+      opacity: 0;
+      transform: translateY(-50%);
+    }
+  }
+
+  .illu-merci {
+    background: url(../assets/illu-merci.svg) no-repeat;
+    background-size: 85%;
+    background-position: bottom center;
+    transition-duration: .3s;
+    &.cache {
+      opacity: 0;
+      transform: translateY(50%);
+    }
+  }
+
+  .page-merci {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    h1 {
+      font-family: 'Caslong';
+      font-weight: 300;
+      font-size: 8vw;
+      position: absolute;
+      text-align: center;
+      width: 100%;
+      top: 45%;
+      transform: translateY(-50%);
+      margin: 0;
+    }
+
+    .logos {
+      position: absolute;
+      width: 25vw;
+      height: 10vw;
+      background: url(../assets/logos.svg) no-repeat;
+      background-size: contain;
+      background-position: center;
+      left: 50%;
+      top: 65%;
+      transform: translate(-50%, -50%);
     }
   }
 
