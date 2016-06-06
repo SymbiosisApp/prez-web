@@ -1,8 +1,12 @@
 <template>
-  <div class="abs-full page" :class="getClassesForPage(0, 5)">
-    <div class="counter" v-if="state"><counter-incrementer :val="state.steps" :round="0"></counter-incrementer></div>
-    <div class="geoloc-map">
-      <geoloc :state="state"></geoloc>
+  <div class="abs-full page" :class="getClassesForPage(0, 4)">
+    <div class="top-container">
+      <div class="counter" v-if="state"><span class="counter-steps"><counter-incrementer :val="state.steps" :round="0"></counter-incrementer></span><span class="pas">pas</span></div>
+      <div class="line-bottom"></div>
+      <div class="hours-minutes" v-if="state"><counter-incrementer :val="state.hours" :round="0"></counter-incrementer>h<counter-incrementer :val="state.minutes" :round="0"></counter-incrementer></div>
+      <div class="geoloc-map">
+        <geoloc :state="state"></geoloc>
+      </div>
     </div>
   </div>
   <div class="abs-full page" :class="getClassesForPage(0)">
@@ -10,18 +14,6 @@
   </div>
   <div class="abs-full page" :class="getClassesForPage(1)">
     <h1>Prensent 2</h1>
-  </div>
-  <div class="abs-full page" :class="getClassesForPage(2)">
-    <h1>Prensent 3</h1>
-  </div>
-  <div class="abs-full page" :class="getClassesForPage(3)">
-    <h1>Prensent 4</h1>
-  </div>
-  <div class="abs-full page" :class="getClassesForPage(4)">
-    <h1>Prensent 4</h1>
-  </div>
-  <div class="abs-full page" :class="getClassesForPage(5)">
-    <h1>Prensent 4</h1>
   </div>
 </template>
 
@@ -136,24 +128,63 @@ export default {
   }
 }
 
+.hours-minutes {
+  position: absolute;
+  text-align: left;
+  font-size: 5vw;
+  font-family: 'Campton';
+  font-weight: 200;
+  margin: 0;
+  top: 22vw;
+  left: 35vw;
+  letter-spacing: -0.2vw;
+}
+
 .counter {
   position: absolute;
-  font-size: 24px;
+  text-align: left;
+  font-size: 2vw;
   font-family: 'Campton', Tahoma, sans-serif;
   font-weight: 400;
   margin: 0;
-  top: 20%;
-  right: 10%;
+  top: 5vw;
+  left: 35vw;
+
+  .pas {
+    text-transform: uppercase;
+  }
+  .counter-steps {
+    font-size: 10vw;
+    font-family: 'Caslong';
+    font-weight: 300;
+  }
+}
+
+.top-container{
+  position: absolute;
+  height: 30vw;
+  background: #B9D7F8;
+  width: 100%;
+  .line-bottom {
+    height: 2px;
+    position: absolute;
+    left: 30vw;
+    top: 20vw;
+    right: 0;
+    background: #A1C4ED;
+  }
 }
 
 .geoloc-map {
   position: absolute;
-  width: 15rem;
-  height: 15rem;
+  width: 30vw;
+  height: 30vw;
+  left: 0;
+  top: 0;
   z-index: 1200;
   overflow: hidden;
-  border-radius: 100%;
-  border: 5px solid white;
+  border: none;
 }
+
 
 </style>

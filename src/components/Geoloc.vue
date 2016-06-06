@@ -43,6 +43,11 @@ export default {
   },
   computed: {
     geoloc() {
+      console.log(this.state)
+      if (!this.state) {
+        debugger;
+        return { lat: 48.8746253, lng: 2.38835662 }
+      }
       return this.state.geoloc
     }
   },
@@ -64,6 +69,9 @@ export default {
       this.counterIncrementTimeout = setInterval(this.incrementCounter, interval)
     },
     incrementCounter() {
+      if (this.geoloc == null) {
+        debugger;
+      }
       if (Math.abs(this.geoloc.lat - this.valueDisplay.lat) <= Math.abs(this.counterIncrementAmount.lat)) {
         this.valueDisplay = this.geoloc
         clearInterval(this.counterIncrementTimeout)

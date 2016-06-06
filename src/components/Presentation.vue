@@ -1,6 +1,5 @@
 <template>
   <div class="container" :style="{backgroundColor: getBackground() }">
-    <!-- <progression :page="page" :nbr-of-pages="nbrOfPages" :from-page="6" :to-page="11"></progression> -->
     <div class="controls" :class="{cache: hideControl() }">
       <controls :page="page" :nbr-of-pages="nbrOfPages"></controls>
     </div>
@@ -47,6 +46,7 @@
         <h1>Chloé Bouquet<br>25 ans<br>Paris</h1>
       </div>
     </div>
+    <progression :page="page" :nbr-of-pages="nbrOfPages" :from-page="7" :to-page="11"></progression>
 
     <div class="abs-full merci-phone" :class="{cache: page != nbrOfPages - 1 }"></div>
     <div class="abs-full illu-merci" :class="{cache: page != nbrOfPages - 1 }"></div>
@@ -89,6 +89,9 @@ export default {
       return this.page == 0 || this.page == this.nbrOfPages - 1
     },
     showLogoWhite() {
+      if (this.page >= 7 && this.page <= 11) {
+        return true
+      }
       if ([0, 5].indexOf(this.page) > -1) {
         return true
       }
@@ -114,9 +117,11 @@ export default {
       if (this.page == this.nbrOfPages - 1) {
         return '#A8CDF7';
       }
-
       var colors = ['#A8CDF7', '#FF9C8D', '#A8CDF7', '#A8CDF7', '#FFE0D1', '#000000', '#A8CDF7']
-      return colors[this.page]
+      if (colors[this.page]) {
+        return colors[this.page]
+      }
+      return '#A8CDF7'
     },
     getClassesForPage(forPage, toPage) {
       if (is.existy(toPage)) {

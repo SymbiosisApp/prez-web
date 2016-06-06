@@ -48,6 +48,7 @@ export default {
   ready() {
     // Attach key events
     window.addEventListener('keyup', this.onKeyPressed)
+    window.addEventListener('resize', this.onResize)
 
     socket.on('WRONG_KEY', () => {
       this.secretIsCorrect = false
@@ -63,7 +64,7 @@ export default {
   },
   methods: {
     onKeyPressed(e) {
-      console.log(e.keyCode)
+      // console.log(e.keyCode)
       switch (e.keyCode) {
         case 39: // Right
         case 34: // Presenter next
@@ -79,6 +80,9 @@ export default {
         default:
 
       }
+    },
+    onResize(e) {
+      this.$broadcast('v-resize')
     },
     trySecretKey() {
       socket.emit('TRY_KEY', this.secret)
