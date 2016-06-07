@@ -29,7 +29,6 @@ export default {
       let iterate = duration / interval
       let diff = this.val - this.valueDisplay
       this.counterIncrementAmount = diff / iterate;
-      console.log("increment", diff / iterate)
       this.counterIncrementTimeout = setInterval(this.incrementCounter, interval)
     },
     incrementCounter() {

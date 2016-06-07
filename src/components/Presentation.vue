@@ -45,11 +45,11 @@
         <h1>Chloé Bouquet<br>25 ans<br>Paris</h1>
       </div>
     </div>
-    <progression :page="page" :nbr-of-pages="nbrOfPages" :from-page="7" :to-page="11"></progression>
+    <progression :page="page" :nbr-of-pages="nbrOfPages" :from-page="7" :to-page="17"></progression>
 
     <div class="abs-full merci-phone" :class="{cache: page != nbrOfPages - 1 }"></div>
     <div class="abs-full illu-merci" :class="{cache: page != nbrOfPages - 1 }"></div>
-    <div class="abs-full page page-merci" :class="getClassesForPage(12)">
+    <div class="abs-full page page-merci" :class="getClassesForPage(17)">
       <div class="logos"></div>
       <h1>Merci !</h1>
     </div>

@@ -1,6 +1,6 @@
 import io from 'socket.io-client'
 
-const socket = io('localhost:8000');
+const socket = io('http://symbiosis-prez.etienne-dldc.fr/');
 
 var secretKey = ''
 

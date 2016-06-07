@@ -1,19 +1,48 @@
 <template>
-  <div class="abs-full page" :class="getClassesForPage(0, 4)">
-    <div class="top-container">
-      <div class="counter" v-if="state"><span class="counter-steps"><counter-incrementer :val="state.steps" :round="0"></counter-incrementer></span><span class="pas">pas</span></div>
-      <div class="line-bottom"></div>
-      <div class="hours-minutes" v-if="state"><counter-incrementer :val="state.hours" :round="0"></counter-incrementer>h<counter-incrementer :val="state.minutes" :round="0"></counter-incrementer></div>
-      <div class="geoloc-map">
-        <geoloc :state="state"></geoloc>
+  <div class="abs-full page" :class="getClassesForPage(0, 6)">
+    <div class="counter" v-if="state"><span class="counter-steps"><counter-incrementer :val="state.steps" :round="0"></counter-incrementer></span><span class="pas">pas</span></div>
+    <div class="activites-list">
+      <div class="relativ-box">
+        <div class="vertical">
+          <activite-item :text="activites[0]" :sub-page="subPage" :position="1"></activite-item>
+          <activite-item :text="activites[1]" :sub-page="subPage" :position="2"></activite-item>
+          <activite-item :text="activites[2]" :sub-page="subPage" :position="3"></activite-item>
+          <activite-item :text="activites[2]" :sub-page="subPage" :position="4"></activite-item>
+          <!-- <div class="activite no-pas" transition="expand" v-show="subPage >= 1">
+            <p class="main"><span class="name">Chloé</span> va jusqu'au parc des Buttes Chaumont</p>
+          </div>
+          <div class="activite" transition="expand" v-show="subPage >= 2">
+            <p class="main"><span class="name">Chloé</span> va jusqu'au parc Bla gdgsgq</p>
+            <p class="pas-diff">+ 6000 pas</p>
+          </div>
+          <div class="activite" transition="expand" v-show="subPage >= 3">
+            <p class="main"><span class="name">Chloé</span> va jusqu'au parc des Buttes Chaumont</p>
+            <p class="pas-diff">+ 9000 pas</p>
+          </div>
+          <div class="activite" transition="expand" v-show="subPage >= 4">
+            <p class="main"><span class="name">Chloé</span> va jusqu'au parc des Buttes Chaumont</p>
+            <p class="pas-diff">+ 4000 pas</p>
+          </div>
+          <div class="activite" transition="expand" v-show="subPage >= 5">
+            <p class="main"><span class="name">Chloé</span> va jusqu'au parc des.</p>
+            <p class="pas-diff">+ 2000 pas</p>
+          </div>
+          <div class="activite" transition="expand" v-show="subPage >= 6">
+            <p class="main"><span class="name">Chloé</span> va jusqu'au parc des Buttes Chaumont</p>
+            <p class="pas-diff">+ 2000 pas</p>
+          </div>
+          <div class="activite" transition="expand" v-show="subPage >= 7">
+            <p class="main"><span class="name">Chloé</span> va jusqu'au parc des Buttes Chaumont</p>
+            <p class="pas-diff">+ 2000 pas</p>
+          </div>
+          <div class="activite" transition="expand" v-show="subPage >= 8">
+            <p class="main"><span class="name">Chloé</span> va jusqu'au parc des Buttes Chaumont</p>
+            <p class="pas-diff">+ 2000 pas</p>
+          </div> -->
+        </div>
+        <div class="gradient"></div>
       </div>
     </div>
-  </div>
-  <div class="abs-full page" :class="getClassesForPage(0)">
-    <h1>Prensent 1</h1>
-  </div>
-  <div class="abs-full page" :class="getClassesForPage(1)">
-    <h1>Prensent 2</h1>
   </div>
 </template>
 
@@ -21,13 +50,13 @@
 import is from 'is_js'
 import appData from '../services/appData';
 import CounterIncrementer from './CounterIncrementer';
-import Geoloc from './Geoloc';
+import ActiviteItem from './ActiviteItem';
 import * as socket from '../services/sockets';
 
 export default {
   components: {
     CounterIncrementer,
-    Geoloc
+    ActiviteItem
   },
   props: {
     page: Number,
@@ -40,6 +69,13 @@ export default {
       state: {
         geoloc: { lat: 48.8746253, lng: 2.38835662 }
       },
+      activites: [
+        `<span style="font-weight: 600">Chloé</span> va jusqu'au parc des Buttes Chaumont`,
+        `<span style="font-weight: 600">Chloé</span> va jusqu'au parc des Buttes Chaumont`,
+        `<span style="font-weight: 600">Chloé</span> va jusqu'au parc des Buttes Chaumont`,
+        `<span style="font-weight: 600">Chloé</span> va jusqu'au parc des Buttes Chaumont`,
+        `<span style="font-weight: 600">Chloé</span> va jusqu'au parc des Buttes Chaumont`,
+      ]
     }
   },
   computed: {
@@ -58,8 +94,10 @@ export default {
   },
   watch: {
     subPage(val, oldVal) {
-      if (val >= 0 && val < this.nbrOfSubPage) {
-        var newState = this.getDataForIndex(val)
+      var udpateVal = val - 1
+      if (udpateVal >= 0 && udpateVal < this.nbrOfSubPage) {
+        var newState = this.getDataForIndex(udpateVal)
+        console.log("send " + udpateVal)
         socket.emitWithKey('UPDATE_STATE', newState)
       }
     }
@@ -105,50 +143,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.controls {
-  z-index: 1000;
-  background: url(../assets/controls.svg) no-repeat center;
-  background-size: 100% 100%;
-  position: absolute;
-  width: 200px;
-  height: 257px;
-  bottom: 0;
-  left: 0;
-  transition-duration: .3s;
-  opacity: 0.5;
-  &.cache {
-    transform: translateY(50%);
-    opacity: 0;
-    &:hover {
-      opacity: 0;
-    }
-  }
-  &:hover {
-    opacity: 1;
-  }
-}
 
-.hours-minutes {
-  position: absolute;
-  text-align: left;
-  font-size: 5vw;
-  font-family: 'Campton';
-  font-weight: 200;
-  margin: 0;
-  top: 22vw;
-  left: 35vw;
-  letter-spacing: -0.2vw;
-}
 
 .counter {
   position: absolute;
-  text-align: left;
+  text-align: center;
   font-size: 2vw;
   font-family: 'Campton', Tahoma, sans-serif;
   font-weight: 400;
   margin: 0;
   top: 5vw;
-  left: 35vw;
+  left: 0;
+  right: 0;
 
   .pas {
     text-transform: uppercase;
@@ -175,16 +181,35 @@ export default {
   }
 }
 
-.geoloc-map {
+.activites-list {
   position: absolute;
-  width: 30vw;
-  height: 30vw;
-  left: 0;
-  top: 0;
-  z-index: 1200;
-  overflow: hidden;
-  border: none;
-}
+  left: 20%;
+  right: 20%;
+  bottom: 10%;
+  top: 17vw;
 
+  .relativ-box {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .vertical {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    background-image: linear-gradient(to bottom, #A8CDF7 0%, rgba(#a8cdf7, 0) 100%);
+  }
+}
 
 </style>

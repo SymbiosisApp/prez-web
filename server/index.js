@@ -1,9 +1,13 @@
 const express = require('express')
 
 const app = express()
-const port = process.env.PORT || 8000
+const port = process.env.PORT || 8010
 
-app.use(express.static('dist'))
+// app.use(express.static('dist'))
+
+app.get('/', function(req, res){
+  res.send('Ca marche :)');
+});
 
 app.set('port', port)
 
