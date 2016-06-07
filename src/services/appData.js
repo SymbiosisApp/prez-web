@@ -8,14 +8,14 @@ export default [
     hours: 10,
     minutes: 34
   }, {
-    steps: 4500,
-    geoloc: { lat: 48.87710911, lng: 2.37865775 },
+    geoloc: { lat: 48.880178, lng: 2.382417},
     hours: 20
   }, {
-    steps: 10089,
-
+    geoloc: { lat: 48.87710911, lng: 2.37865775 },
+    steps: 4567,
   }, {
-    minutes: 20
+    minutes: 20,
+    steps: 30089,
   }, {
     geoloc: { lat: 48.88303589, lng: 2.38535255 }
   }, {

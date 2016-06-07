@@ -13,26 +13,25 @@
       </div>
     </div>
     <div class="abs-full page" :class="getClassesForPage(1)">
+      <div class="content">
+        <h1>Du temps<br>pour la<br>nature...</h1>
+      </div>
+    </div>
+    <div class="abs-full page" :class="getClassesForPage(1, 2)">
+      <div class="main-illu perso-1" :style="{ opacity: 1  }"></div>
+      <div class="main-illu perso-2" :style="{ opacity: page >= 2 ? 1 : 0  }"></div>
+    </div>
+    <div class="abs-full page" :class="getClassesForPage(2)">
+      <div class="content">
+        <h1>Valoriser <br>les espaces <br> naturels</h1>
+      </div>
+    </div>
+    <div class="abs-full page" :class="getClassesForPage(3)">
       <div class="main-illu phone-1"></div>
       <div class="content">
         <h1>Le numérique<br/>au service<br />de la nature</h1>
       </div>
     </div>
-    <div class="abs-full page" :class="getClassesForPage(2)">
-      <div class="content">
-        <h1>Désintérêt<br>pour la<br>nature</h1>
-      </div>
-    </div>
-    <div class="abs-full page" :class="getClassesForPage(2, 3)">
-      <div class="main-illu perso-1" :style="{ opacity: 1  }"></div>
-      <div class="main-illu perso-2" :style="{ opacity: page >= 3 ? 1 : 0  }"></div>
-    </div>
-    <div class="abs-full page" :class="getClassesForPage(3)">
-      <div class="content">
-        <h1>Valoriser <br>les espaces <br> naturels</h1>
-      </div>
-    </div>
-
     </div>
     <div class="abs-full page" :class="getClassesForPage(4, 5)">
       <div class="play-button" :style="{opacity: page == 4 ? 1 : 0}"></div>
@@ -117,7 +116,7 @@ export default {
       if (this.page == this.nbrOfPages - 1) {
         return '#A8CDF7';
       }
-      var colors = ['#A8CDF7', '#FF9C8D', '#A8CDF7', '#A8CDF7', '#FFE0D1', '#000000', '#A8CDF7']
+      var colors = ['#A8CDF7', '#A8CDF7', '#A8CDF7', '#FF9C8D', '#FFE0D1', '#000000', '#A8CDF7']
       if (colors[this.page]) {
         return colors[this.page]
       }
