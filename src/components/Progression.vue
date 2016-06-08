@@ -1,13 +1,15 @@
 <template>
-  <div class="abs-full page" :class="getClassesForPage(0, 6)">
+  <div class="abs-full page" :class="getClassesForPage(0, 9)">
     <div class="counter" v-if="state"><span class="counter-steps"><counter-incrementer :val="state.steps" :round="0"></counter-incrementer></span><span class="pas">pas</span></div>
     <div class="activites-list">
       <div class="relativ-box">
         <div class="vertical">
           <activite-item :text="activites[0]" :sub-page="subPage" :position="1"></activite-item>
           <activite-item :text="activites[1]" :sub-page="subPage" :position="2"></activite-item>
-          <activite-item :text="activites[2]" :sub-page="subPage" :position="3"></activite-item>
-          <activite-item :text="activites[2]" :sub-page="subPage" :position="4"></activite-item>
+          <activite-item-icon :text="activites[2]" :sub-page="subPage" :position="3" type="oboarding"></activite-item-icon>
+          <activite-item :text="activites[3]" :sub-page="subPage" :position="4"></activite-item>
+          <activite-item :text="activites[4]" :sub-page="subPage" :position="5"></activite-item>
+          <activite-item-icon :text="activites[5]" :sub-page="subPage" :position="6" type="popup"></activite-item-icon>
           <!-- <div class="activite no-pas" transition="expand" v-show="subPage >= 1">
             <p class="main"><span class="name">Chloé</span> va jusqu'au parc des Buttes Chaumont</p>
           </div>
@@ -51,12 +53,14 @@ import is from 'is_js'
 import appData from '../services/appData';
 import CounterIncrementer from './CounterIncrementer';
 import ActiviteItem from './ActiviteItem';
+import ActiviteItemIcon from './ActiviteItemIcon';
 import * as socket from '../services/sockets';
 
 export default {
   components: {
     CounterIncrementer,
-    ActiviteItem
+    ActiviteItem,
+    ActiviteItemIcon
   },
   props: {
     page: Number,
@@ -72,9 +76,11 @@ export default {
       activites: [
         `<span style="font-weight: 600">Chloé</span> va jusqu'au parc des Buttes Chaumont`,
         `<span style="font-weight: 600">Chloé</span> va jusqu'au parc des Buttes Chaumont`,
+        `Yolo Yolo`,
         `<span style="font-weight: 600">Chloé</span> va jusqu'au parc des Buttes Chaumont`,
         `<span style="font-weight: 600">Chloé</span> va jusqu'au parc des Buttes Chaumont`,
-        `<span style="font-weight: 600">Chloé</span> va jusqu'au parc des Buttes Chaumont`,
+        `Présentation de yolo`,
+        `After`
       ]
     }
   },
@@ -183,8 +189,8 @@ export default {
 
 .activites-list {
   position: absolute;
-  left: 20%;
-  right: 20%;
+  left: 5%;
+  right: 5%;
   bottom: 10%;
   top: 17vw;
 

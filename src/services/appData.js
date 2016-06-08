@@ -4,6 +4,7 @@ export default [
     geoloc: { lat: 48.8746253, lng: 2.38835662 }
   }, {
     geoloc: { lat: 48.880178, lng: 2.382417},
+    steps: 21000,
     hours: 20
   }, {
     geoloc: { lat: 48.87710911, lng: 2.37865775 },

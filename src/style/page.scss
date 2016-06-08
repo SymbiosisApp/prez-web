@@ -75,3 +75,37 @@
   }
 
 }
+
+
+
+/* always present */
+.expand-transition {
+  transition: all .3s ease;
+  overflow: hidden;
+
+  &.activite {
+    height: 10vh;
+    &.popup, &.onboarding {
+      height: 13vh;
+    }
+  }
+}
+
+/* .expand-enter defines the starting state for entering */
+/* .expand-leave defines the ending state for leaving */
+.expand-enter, .expand-leave {
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  height: 0;
+  &.activite {
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+    height: 0;
+
+    &.popup, &.onboarding {
+      height: 0;
+    }
+  }
+}

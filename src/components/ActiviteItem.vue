@@ -1,15 +1,12 @@
 <template>
-  <div class="activite" :class="{ 'no-pas': diffPas == 0  }" transition="expand" v-show="subPage >= position">
-    <p class="main">{{{ text }}}</p>
-    <p class="pas-diff" v-if="diffPas > 0">+ {{ diffPas }} pas</p>
+  <div class="activite" transition="expand" v-show="subPage >= position">
+    <p class="main">{{{ text }}} <span class="pas-diff" v-if="diffPas > 0">+ {{ diffPas }} pas</span></p>
   </div>
 </template>
 
 <script>
 import is from 'is_js'
 import appData from '../services/appData';
-
-console.log(appData)
 
 export default {
   components: {},
@@ -66,7 +63,7 @@ export default {
   &:before {
     content: "";
     display: block;
-    background: white;
+    background: rgba(255, 255, 255, 0.5);
     width: 15vw;
     height: 2px;
     margin: auto;
@@ -81,42 +78,9 @@ export default {
   }
 
   .pas-diff {
-    margin: 1vh;
-    font-size: 2vh;
-    font-weight: 600;
-  }
-}
-:global {
-  .chloe-name {
-    font-weight: 600;
-  }
-}
-
-/* always present */
-.expand-transition {
-  transition: all .3s ease;
-  overflow: hidden;
-
-  &.activite {
-    height: 15vh;
-  }
-  &.no-pas {
-    height: 12vh;
-  }
-}
-
-/* .expand-enter defines the starting state for entering */
-/* .expand-leave defines the ending state for leaving */
-.expand-enter, .expand-leave {
-  opacity: 0;
-  margin: 0;
-  padding: 0;
-  height: 0;
-  &.activite {
-    opacity: 0;
-    margin: 0;
-    padding: 0;
-    height: 0;
+    margin-left: 2vw;
+    font-weight: 800;
+    color: #225CBD;
   }
 }
 

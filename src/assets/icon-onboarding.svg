@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="54px" height="54px" viewBox="0 0 54 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>icon onboarding</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD-Copy-2" transform="translate(-515.000000, -374.000000)">
+            <g id="onboarding" transform="translate(517.000000, 376.000000)">
+                <g id="icon-onboarding">
+                    <text id="i" font-family="Campton-Medium, Campton" font-size="30" font-weight="400" fill="#FFFFFF">
+                        <tspan x="21" y="35">i</tspan>
+                    </text>
+                    <circle id="Oval-36" stroke="#FFFFFF" stroke-width="4" cx="25" cy="25" r="25"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
