@@ -39,7 +39,7 @@
     <div class="abs-full page" :class="getClassesForPage(6)">
       <div class="main-illu techos"></div>
       <div class="content">
-        <h2>Ptotoype</h2>
+        <h2>Prototype</h2>
         <div class="line"></div>
         <h1>Mise en<br>place</h1>
       </div>
@@ -52,17 +52,22 @@
         <h1>Chloé Bouquet<br>25 ans<br>Paris</h1>
       </div>
     </div>
-    <div class="illu-progress" :class="{cache: page < 8 || page > 17}"></div>
-    <progression :page="page" :nbr-of-pages="nbrOfPages" :from-page="8" :to-page="17"></progression>
+    <div class="illu-progress" :class="{cache: page < 8 || page > 15}"></div>
+    <progression :page="page" :nbr-of-pages="nbrOfPages" :from-page="8" :to-page="14"></progression>
 
-    <div class="abs-full page" :class="getClassesForPage(18, 19)">
-      <div class="play-button" :style="{opacity: page == 18 ? 1 : 0}"></div>
-      <video buffered :controls="help" v-el:teaser-video class="concept-video" src="static/teaser_final.mov" :style="{opacity: page <= 18 ? 0 : 1 }"></video>
+    <div class="abs-full page" :class="getClassesForPage(15)">
+      <h1 class="schema-title">Étapes</h1>
+      <div class="schema"></div>
+    </div>
+
+    <div class="abs-full page" :class="getClassesForPage(16, 17)">
+      <div class="play-button" :style="{opacity: page == 16 ? 1 : 0}"></div>
+      <video muted buffered :controls="help" v-el:teaser-video class="concept-video" src="static/teaser_final.mov" :style="{opacity: page <= 16 ? 0 : 1 }"></video>
     </div>
 
     <div class="abs-full merci-phone" :class="{cache: page != nbrOfPages - 1 }"></div>
     <div class="abs-full illu-merci" :class="{cache: page != nbrOfPages - 1 }"></div>
-    <div class="abs-full page page-merci" :class="getClassesForPage(20)">
+    <div class="abs-full page page-merci" :class="getClassesForPage(18)">
       <div class="logos"></div>
       <h1>Merci !</h1>
     </div>
@@ -92,10 +97,10 @@ export default {
         this.$els.conceptVideo.pause()
       }
 
-      if (val == 19) {
+      if (val == 17) {
         this.$els.teaserVideo.play()
       }
-      if (val == 18 || val == 20) {
+      if (val == 16 || val == 20) {
         this.$els.teaserVideo.pause()
       }
 
@@ -106,7 +111,7 @@ export default {
       return this.page == 0 || this.page == this.nbrOfPages - 1
     },
     showLogoWhite() {
-      if (this.page >= 19) {
+      if (this.page >= 17) {
         return true
       }
       if ([0, 5].indexOf(this.page) > -1) {
@@ -118,7 +123,7 @@ export default {
       if (this.help) {
         return false
       }
-      if ([0, 5, this.nbrOfPages-1, 19].indexOf(this.page) > -1) {
+      if ([0, 5, this.nbrOfPages-1, 17].indexOf(this.page) > -1) {
         return true
       }
       return false
@@ -134,10 +139,10 @@ export default {
       if (this.page == this.nbrOfPages - 1) {
         return '#A8CDF7';
       }
-      if (this.page == 19) {
+      if (this.page == 17) {
         return '#000000'
       }
-      if (this.page == 18) {
+      if (this.page == 16) {
         return '#FFE0D1'
       }
       var colors = ['#A8CDF7', '#A8CDF7', '#A8CDF7', '#FF9C8D', '#FFE0D1', '#000000', '#FFE0D1', '#A8CDF7']
@@ -293,6 +298,30 @@ export default {
       transform: translateY(50%);
       opacity: 0;
     }
+  }
+
+  .schema-title {
+    position: absolute;
+    font-family: 'Caslong';
+    font-weight: 300;
+    font-size: 5.5vw;
+    position: absolute;
+    left: 20%;
+    right: 20%;
+    top: 20%;
+    margin: 0;
+    text-align: center;
+  }
+
+  .schema {
+    background: url(../assets/schema.svg) no-repeat;
+    background-size: contain;;
+    background-position: center;
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    right: 10%;
+    height: 30%;
   }
 
   .merci-phone {

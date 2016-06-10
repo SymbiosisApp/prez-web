@@ -16,7 +16,13 @@ export default {
   },
   computed: {
     typeClass() {
-      return (this.type == "popup" ? 'popup' : 'onboarding')
+      if (this.type == "popup") {
+        return 'popup'
+      }
+      if (this.type == "onboarding") {
+        return 'onboarding'
+      }
+      return 'notif'
     }
   }
 }
@@ -65,6 +71,16 @@ export default {
 
   &.onboarding .icon {
     background: url(../assets/icon-onboarding.svg) no-repeat right;
+    background-size: contain;
+    display: inline-block;
+    vertical-align: middle;
+    height: 6vh;
+    width: 6vh;
+    margin-right: 4vh;
+  }
+
+  &.notif .icon {
+    background: url(../assets/icon-notif.svg) no-repeat right;
     background-size: contain;
     display: inline-block;
     vertical-align: middle;

@@ -1,46 +1,15 @@
 <template>
-  <div class="abs-full page" :class="getClassesForPage(0, 9)">
-    <div class="counter" v-if="state"><span class="counter-steps"><counter-incrementer :val="state.steps" :round="0"></counter-incrementer></span><span class="pas">pas</span></div>
+  <div class="abs-full page" :class="getClassesForPage(0, 6)">
+    <div class="counter" v-if="state" :class="{cache: subPage < 4}"><span class="counter-steps"><counter-incrementer :val="state.steps" :round="0"></counter-incrementer></span><span class="pas">pas</span></div>
     <div class="activites-list">
       <div class="relativ-box">
         <div class="vertical">
-          <activite-item :text="activites[0]" :sub-page="subPage" :position="1"></activite-item>
+          <activite-item-icon :text="activites[0]" :sub-page="subPage" :position="1" type="popup"></activite-item-icon>
           <activite-item :text="activites[1]" :sub-page="subPage" :position="2"></activite-item>
-          <activite-item-icon :text="activites[2]" :sub-page="subPage" :position="3" type="oboarding"></activite-item-icon>
+          <activite-item-icon :text="activites[2]" :sub-page="subPage" :position="3" type="onboarding"></activite-item-icon>
           <activite-item :text="activites[3]" :sub-page="subPage" :position="4"></activite-item>
           <activite-item :text="activites[4]" :sub-page="subPage" :position="5"></activite-item>
-          <activite-item-icon :text="activites[5]" :sub-page="subPage" :position="6" type="popup"></activite-item-icon>
-          <!-- <div class="activite no-pas" transition="expand" v-show="subPage >= 1">
-            <p class="main"><span class="name">Chloé</span> va jusqu'au parc des Buttes Chaumont</p>
-          </div>
-          <div class="activite" transition="expand" v-show="subPage >= 2">
-            <p class="main"><span class="name">Chloé</span> va jusqu'au parc Bla gdgsgq</p>
-            <p class="pas-diff">+ 6000 pas</p>
-          </div>
-          <div class="activite" transition="expand" v-show="subPage >= 3">
-            <p class="main"><span class="name">Chloé</span> va jusqu'au parc des Buttes Chaumont</p>
-            <p class="pas-diff">+ 9000 pas</p>
-          </div>
-          <div class="activite" transition="expand" v-show="subPage >= 4">
-            <p class="main"><span class="name">Chloé</span> va jusqu'au parc des Buttes Chaumont</p>
-            <p class="pas-diff">+ 4000 pas</p>
-          </div>
-          <div class="activite" transition="expand" v-show="subPage >= 5">
-            <p class="main"><span class="name">Chloé</span> va jusqu'au parc des.</p>
-            <p class="pas-diff">+ 2000 pas</p>
-          </div>
-          <div class="activite" transition="expand" v-show="subPage >= 6">
-            <p class="main"><span class="name">Chloé</span> va jusqu'au parc des Buttes Chaumont</p>
-            <p class="pas-diff">+ 2000 pas</p>
-          </div>
-          <div class="activite" transition="expand" v-show="subPage >= 7">
-            <p class="main"><span class="name">Chloé</span> va jusqu'au parc des Buttes Chaumont</p>
-            <p class="pas-diff">+ 2000 pas</p>
-          </div>
-          <div class="activite" transition="expand" v-show="subPage >= 8">
-            <p class="main"><span class="name">Chloé</span> va jusqu'au parc des Buttes Chaumont</p>
-            <p class="pas-diff">+ 2000 pas</p>
-          </div> -->
+          <activite-item-icon :text="activites[5]" :sub-page="subPage" :position="6" type="notif"></activite-item-icon>
         </div>
         <div class="gradient"></div>
       </div>
@@ -71,16 +40,15 @@ export default {
   data() {
     return {
       state: {
-        geoloc: { lat: 48.8746253, lng: 2.38835662 }
+        geoloc: { lat: 48.845566, lng: 2.348988 }
       },
       activites: [
-        `<span style="font-weight: 600">Chloé</span> va jusqu'au parc des Buttes Chaumont`,
-        `<span style="font-weight: 600">Chloé</span> va jusqu'au parc des Buttes Chaumont`,
-        `Yolo Yolo`,
-        `<span style="font-weight: 600">Chloé</span> va jusqu'au parc des Buttes Chaumont`,
-        `<span style="font-weight: 600">Chloé</span> va jusqu'au parc des Buttes Chaumont`,
-        `Présentation de yolo`,
-        `After`
+        `Popup : Récupère une graine`,
+        `<span style="font-weight: 600">Chloé</span> va jusqu'au parc de Notre Dame`,
+        `Explication: Graine, Partage et Déplaces-toi`,
+        `<span style="font-weight: 600">Chloé</span> marche jusqu'au Jardin des Plantes`,
+        `<span style="font-weight: 600">Chloé</span> marche...`,
+        `Notification : Ta plante à grandi !`
       ]
     }
   },
@@ -161,6 +129,12 @@ export default {
   top: 5vw;
   left: 0;
   right: 0;
+  transition-duration: .3s;
+
+  &.cache {
+    transform: translateY(-150%);
+    opacity: 0;
+  }
 
   .pas {
     text-transform: uppercase;

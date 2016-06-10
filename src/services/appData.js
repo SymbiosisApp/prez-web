@@ -1,20 +1,46 @@
 export default [
   {
     steps: 0,
-    geoloc: { lat: 48.8746253, lng: 2.38835662 }
+    // geoloc: { lat: 48.8746253, lng: 2.38835662 }
+    geoloc: { lat: 48.845566, lng: 2.348988 }
   }, {
-    geoloc: { lat: 48.880178, lng: 2.382417},
-    steps: 21000,
-    hours: 20
+    // Move to my colony
+    geoloc: { lat: 48.851075, lng:  2.351264 }
   }, {
-    geoloc: { lat: 48.87710911, lng: 2.37865775 },
-    steps: 4567,
+    // Onboarding
+    steps: 0
   }, {
-    minutes: 20,
-    steps: 10000,
+    geoloc: { lat: 48.844546, lng: 2.359093 },
+    steps: 1587,
   }, {
-    geoloc: { lat: 48.88303589, lng: 2.38535255 },
-    steps: 15000
-  }, {
-  }
+    // from notif
+    steps: 6623
+  },
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
 ]
